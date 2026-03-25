@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTutor - Chinh Phục 9.0 IELTS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="location.reload()">
+            <span class="logo-icon">☁️</span> EduTutor
+        </div>
+
+        <nav>
+            <button type="button" onclick="openTab('tutors')" class="nav-link">Tìm Gia Sư</button>
+            <button type="button" onclick="openTab('tips')" class="nav-link">Mẹo Học Tập</button>
+            <button type="button" onclick="openTab('predictor')" class="nav-link">Dự Đoán Điểm</button>
+            <button type="button" onclick="openTab('reviews')" class="nav-link">Đánh Giá</button>
+
+            <div class="user-menu-container">
+                <button id="login-btn-nav" class="btn-nav-app" onclick="openAuthModal()">Đăng Nhập</button>
+
+                <div id="user-profile-section" style="display: none;">
+                    <div class="user-avatar" id="main-avatar" onclick="toggleDropdown()">D</div>
+
+                    <div id="user-dropdown" class="dropdown-menu">
+                        <div class="dropdown-header">Chào, <span id="dropdown-username">Sếp</span></div>
+                        <hr>
+                        <a href="#" class="dropdown-item" onclick="openProfileModal()">👤 Trang Cá Nhân</a>
+                        <label for="avatar-input" class="dropdown-item">📸 Đổi Ảnh Đại Diện</label>
+                        <input type="file" id="avatar-input" style="display: none;" accept="image/*">
+                        <hr>
+                        <a href="#" onclick="logout()" class="logout-text">🚪 Đăng Xuất</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="tab-content active">
+            <div class="hero-section">
+                <div class="giant-score-container">
+                    <div class="badge-sci">🧪 Phương pháp khoa học</div>
+                    <div class="blob blob-1"></div>
+                    <div class="blob blob-2"></div>
+                    <div class="blob blob-3"></div>
+                    <div class="blob blob-4"></div>
+                    <h1 class="giant-score-txt">9.0</h1>
+                </div>
+
+                <h2 class="hero-title">Hành trình đạt điểm mơ ước bắt đầu từ đây.</h2>
+                <p class="hero-subtitle">
+                    Cùng 200,000+ học viên khám phá hàng ngàn mẹo học và tìm kiếm gia sư chất lượng
+                </p>
+
+                <div class="button-group">
+                    <button class="btn-primary-hero" onclick="openTab('tutors')">Tìm Gia Sư Ngay</button>
+                    <button class="btn-secondary-hero" onclick="openTab('tips')">Xem Mẹo Học Tập</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutors" class="tab-content">
+            <div class="tutors-page">
+                <h2>🧑‍🏫 Tìm Gia Sư Chất Lượng</h2>
+                <p class="tutors-subtitle">Danh sách gia sư theo khu vực của bạn</p>
+
+                <div class="tutor-filter-bar">
+                    <button type="button" class="filter-btn" onclick="filterTutorsByLocation('ALL')">Tất cả</button>
+                    <button type="button" class="filter-btn" onclick="filterTutorsByLocation('TPHCM')">TP.HCM</button>
+                    <button type="button" class="filter-btn" onclick="filterTutorsByLocation('THUDUC')">Thủ Đức</button>
+                    <button type="button" class="filter-btn" onclick="filterTutorsByLocation('HANOI')">Hà Nội</button>
+                    <button type="button" class="filter-btn" onclick="filterTutorsByLocation('DANANG')">Đà Nẵng</button>
+                </div>
+
+                <div id="tutor-list" class="tutor-list">
+                    <div class="tutor-card" data-location="TPHCM">
+                        <h3>Nguyễn Minh Anh</h3>
+                        <p><b>Khu vực:</b> TP.HCM</p>
+                        <p><b>Điểm:</b> IELTS 8.0</p>
+                        <p><b>Thế mạnh:</b> Speaking, Writing</p>
+                    </div>
+
+                    <div class="tutor-card" data-location="THUDUC">
+                        <h3>Trần Hoàng Nam</h3>
+                        <p><b>Khu vực:</b> Thủ Đức</p>
+                        <p><b>Điểm:</b> IELTS 8.5</p>
+                        <p><b>Thế mạnh:</b> Listening, Reading</p>
+                    </div>
+
+                    <div class="tutor-card" data-location="HANOI">
+                        <h3>Lê Thu Hà</h3>
+                        <p><b>Khu vực:</b> Hà Nội</p>
+                        <p><b>Điểm:</b> IELTS 8.0</p>
+                        <p><b>Thế mạnh:</b> Writing, Grammar</p>
+                    </div>
+
+                    <div class="tutor-card" data-location="DANANG">
+                        <h3>Phạm Gia Huy</h3>
+                        <p><b>Khu vực:</b> Đà Nẵng</p>
+                        <p><b>Điểm:</b> IELTS 7.5</p>
+                        <p><b>Thế mạnh:</b> Speaking, Pronunciation</p>
+                    </div>
+                </div>
+
+                <p id="no-tutor-message" class="no-tutor-message" style="display: none;">
+                    Hiện chưa có gia sư phù hợp với khu vực này.
+                </p>
+            </div>
+        </section>
+
+        <section id="tips" class="tab-content">
+            <div style="padding: 100px; text-align:center;">
+                <h2>💡 Mẹo Học Tập IELTS</h2>
+            </div>
+        </section>
+
+        <section id="predictor" class="tab-content">
+            <div style="padding: 100px; text-align:center;">
+                <h2>📊 Dự Đoán Điểm</h2>
+            </div>
+        </section>
+
+        <section id="reviews" class="tab-content">
+            <div style="padding: 100px; text-align:center;">
+                <h2>⭐ Đánh Giá</h2>
+            </div>
+        </section>
+    </main>
+
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button type="button" class="close-btn" onclick="closeAuthModal()" aria-label="Đóng">&times;</button>
+
+            <div id="login-form" class="auth-form active-form">
+                <h2>Mừng sếp trở lại!</h2>
+
+                <button class="btn-google" type="button">
+                    <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true">
+                        <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303C33.654 32.657 29.225 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.278 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+                        <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 16.108 18.961 13 24 13c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.278 4 24 4c-7.682 0-14.347 4.337-17.694 10.691z"/>
+                        <path fill="#4CAF50" d="M24 44c5.178 0 9.946-1.977 13.541-5.196l-6.254-5.292C29.211 35.091 26.715 36 24 36c-5.204 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+                        <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.05 12.05 0 0 1-4.016 5.512l.001-.001 6.254 5.292C37.099 38.48 44 33 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+                    </svg>
+                    <span>Tiếp tục với Google</span>
+                </button>
+
+                <div class="divider"><span>hoặc</span></div>
+
+                <input type="email" placeholder="Email của bạn" class="auth-input">
+                <input type="password" placeholder="Mật khẩu" class="auth-input">
+                <button class="btn-submit-form" type="button" onclick="handleLogin()">Đăng Nhập</button>
+
+                <p class="auth-switch">
+                    Chưa có nick?
+                    <button type="button" class="auth-switch-btn" onclick="switchAuth('register')">Đăng ký ngay</button>
+                </p>
+            </div>
+
+            <div id="register-form" class="auth-form">
+                <h2>Tạo tài khoản mới</h2>
+
+                <button class="btn-google" type="button">
+                    <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true">
+                        <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303C33.654 32.657 29.225 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.278 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+                        <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 16.108 18.961 13 24 13c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.278 4 24 4c-7.682 0-14.347 4.337-17.694 10.691z"/>
+                        <path fill="#4CAF50" d="M24 44c5.178 0 9.946-1.977 13.541-5.196l-6.254-5.292C29.211 35.091 26.715 36 24 36c-5.204 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+                        <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.05 12.05 0 0 1-4.016 5.512l.001-.001 6.254 5.292C37.099 38.48 44 33 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+                    </svg>
+                    <span>Đăng ký với Google</span>
+                </button>
+
+                <div class="divider"><span>hoặc</span></div>
+
+                <input type="text" placeholder="Họ và tên" class="auth-input">
+                <input type="email" placeholder="Email của bạn" class="auth-input">
+                <input type="password" placeholder="Mật khẩu" class="auth-input">
+                <button class="btn-submit-form" type="button" onclick="handleRegister()">Đăng Ký</button>
+
+                <p class="auth-switch">
+                    Đã có nick rồi?
+                    <button type="button" class="auth-switch-btn" onclick="switchAuth('login')">Đăng nhập</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="profile-modal" class="modal-overlay">
+    <div class="modal-box profile-modal-box">
+        <button type="button" class="close-btn" onclick="closeProfileModal()" aria-label="Đóng">&times;</button>
+
+        <div class="auth-form active-form">
+            <h2>Hồ sơ cá nhân</h2>
+
+            <div class="profile-form-grid">
+                <label class="profile-label">
+                    <span>Bạn muốn làm gia sư?</span>
+                    <select id="profile-is-tutor" class="auth-input">
+                        <option value="">Chọn câu trả lời</option>
+                        <option value="Có">Có</option>
+                        <option value="Không">Không</option>
+                    </select>
+                </label>
+
+                <label class="profile-label">
+                    <span>Họ và tên</span>
+                    <input id="profile-fullname" type="text" class="auth-input" placeholder="Nhập họ và tên">
+                </label>
+
+                <label class="profile-label">
+                    <span>Điểm số</span>
+                    <input id="profile-score" type="text" class="auth-input" placeholder="Ví dụ: IELTS 8.0 / SAT 1450">
+                </label>
+
+                <label class="profile-label">
+                    <span>Giải thưởng</span>
+                    <input id="profile-awards" type="text" class="auth-input" placeholder="Ví dụ: HSG cấp tỉnh, giải debate...">
+                </label>
+
+                <label class="profile-label">
+                    <span>Khu vực sinh sống</span>
+                    <select id="profile-location" class="auth-input">
+                        <option value="">Chọn khu vực</option>
+                        <option value="TPHCM">TP.HCM</option>
+                        <option value="THUDUC">Thủ Đức</option>
+                        <option value="HANOI">Hà Nội</option>
+                        <option value="DANANG">Đà Nẵng</option>
+                    </select>
+                </label>
+
+                <label class="profile-label">
+                    <span>Số điện thoại</span>
+                    <input id="profile-phone" type="text" class="auth-input" placeholder="Nhập số điện thoại">
+                </label>
+
+                <label class="profile-label profile-label-full">
+                    <span>Giới thiệu ngắn</span>
+                    <textarea id="profile-bio" class="profile-textarea" placeholder="Viết vài dòng giới thiệu về bạn..."></textarea>
+                </label>
+            </div>
+
+            <button type="button" class="btn-submit-form" onclick="saveProfile()">Lưu hồ sơ</button>
+
+            <div id="profile-preview" class="profile-preview"></div>
+        </div>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
